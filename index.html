@@ -7,79 +7,33 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Government Property - Hallway Test</title>
+  <title>Government Property 3D Test</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- THREE.JS -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"
+    }
+  }
+  </script>
 </head>
 
 <body>
 
-  <!-- =========================================================
-       SCENE ONE
-       FIRST-PERSON GOVERNMENT FACILITY HALLWAY
-       ========================================================= -->
+  <!--
+       The entire 3D Government Property world
+       will be drawn inside this box.
+  -->
 
-  <main class="stage">
-
-    <div class="hall">
-
-      <!-- Far wall -->
-      <div class="back-wall">
-
-        <div class="door">
-          <div class="door-light"></div>
-        </div>
-
-      </div>
+  <main id="stage"></main>
 
 
-      <!-- Ceiling -->
-      <div class="ceiling">
+  <!-- 3D WORLD CODE -->
 
-        <div class="ceiling-light light-one"></div>
-        <div class="ceiling-light light-two"></div>
-        <div class="ceiling-light light-three"></div>
-        <div class="ceiling-light light-four"></div>
-
-      </div>
-
-
-      <!-- Left wall -->
-      <div class="wall wall-left">
-
-        <div class="panel p1"></div>
-        <div class="panel p2"></div>
-        <div class="panel p3"></div>
-        <div class="panel p4"></div>
-
-      </div>
-
-
-      <!-- Right wall -->
-      <div class="wall wall-right">
-
-        <div class="panel p1"></div>
-        <div class="panel p2"></div>
-        <div class="panel p3"></div>
-        <div class="panel p4"></div>
-
-      </div>
-
-
-      <!-- Floor -->
-      <div class="floor">
-
-        <div class="red-path"></div>
-
-      </div>
-
-
-      <!-- Dark cinematic edges -->
-      <div class="vignette"></div>
-
-    </div>
-
-  </main>
+  <script type="module" src="main.js"></script>
 
 </body>
 
