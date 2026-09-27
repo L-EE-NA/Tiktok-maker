@@ -2,211 +2,84 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Government Property Trailer</title>
+  <title>Government Property - Hallway Test</title>
 
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
-
   <!-- =========================================================
-       PLAY BUTTON
-       Starts the trailer.
+       SCENE ONE
+       FIRST-PERSON GOVERNMENT FACILITY HALLWAY
        ========================================================= -->
 
-  <button id="play-button">
-    TAP TO PLAY
-  </button>
+  <main class="stage">
+
+    <div class="hall">
+
+      <!-- Far wall -->
+      <div class="back-wall">
+
+        <div class="door">
+          <div class="door-light"></div>
+        </div>
+
+      </div>
 
 
-  <!-- =========================================================
-       9:16 TIKTOK STAGE
-       ========================================================= -->
+      <!-- Ceiling -->
+      <div class="ceiling">
 
-  <main class="stage" id="stage">
+        <div class="ceiling-light light-one"></div>
+        <div class="ceiling-light light-two"></div>
+        <div class="ceiling-light light-three"></div>
+        <div class="ceiling-light light-four"></div>
 
-
-    <!-- =======================================================
-         SCENE ONE
-         ANIMATED GOVERNMENT PROPERTY COVER
-         ======================================================= -->
-
-    <section class="complex-scene">
+      </div>
 
 
-      <!-- Real Government Property cover -->
+      <!-- Left wall -->
+      <div class="wall wall-left">
 
-      <img
-        class="cover-close"
-        src="file_00000000c5e48243849aeed202e93012.png"
-        alt=""
-      >
+        <div class="panel p1"></div>
+        <div class="panel p2"></div>
+        <div class="panel p3"></div>
+        <div class="panel p4"></div>
 
-
-      <!-- =====================================================
-           RED ROUTES
-           ===================================================== -->
-
-      <svg
-        class="route-map"
-        viewBox="0 0 900 1600"
-        preserveAspectRatio="xMidYMid slice"
-      >
-
-        <path
-          class="route route-one"
-          d="
-            M450 1600
-            L450 1280
-            L330 1160
-            L330 940
-            L520 830
-            L520 620
-            L700 520
-          "
-        />
-
-        <path
-          class="route route-two"
-          d="
-            M450 1280
-            L650 1160
-            L650 930
-            L790 850
-          "
-        />
-
-        <path
-          class="route route-three"
-          d="
-            M330 1160
-            L170 1050
-            L170 790
-            L340 680
-          "
-        />
-
-        <path
-          class="route route-four"
-          d="
-            M520 830
-            L390 720
-            L390 500
-            L250 420
-          "
-        />
-
-      </svg>
+      </div>
 
 
-      <!-- Tiny moving silhouettes -->
+      <!-- Right wall -->
+      <div class="wall wall-right">
 
-      <div class="person-dot person-one"></div>
+        <div class="panel p1"></div>
+        <div class="panel p2"></div>
+        <div class="panel p3"></div>
+        <div class="panel p4"></div>
 
-      <div class="person-dot person-two"></div>
-
-      <div class="person-dot person-three"></div>
-
-
-      <!-- Moving light -->
-
-      <div class="scan-light"></div>
+      </div>
 
 
-      <!-- Dark edges -->
+      <!-- Floor -->
+      <div class="floor">
 
+        <div class="red-path"></div>
+
+      </div>
+
+
+      <!-- Dark cinematic edges -->
       <div class="vignette"></div>
 
-
-      <!-- Film texture -->
-
-      <div class="grain"></div>
-
-
-    </section>
-
-
-    <!-- =======================================================
-         DARK TRANSITION
-         ======================================================= -->
-
-    <div class="blackout"></div>
-
-
-    <!-- =======================================================
-         FINAL FULL COVER
-         ======================================================= -->
-
-    <section class="final-cover">
-
-      <img
-        src="file_00000000c5e48243849aeed202e93012.png"
-        alt="Government Property by Leena"
-      >
-
-    </section>
-
+    </div>
 
   </main>
-
-
-  <!-- =========================================================
-       START / RESTART ANIMATION
-       ========================================================= -->
-
-  <script>
-
-    const stage = document.getElementById("stage");
-
-    const playButton = document.getElementById("play-button");
-
-
-    playButton.addEventListener("click", async () => {
-
-      try {
-
-        if (document.documentElement.requestFullscreen) {
-
-          await document.documentElement.requestFullscreen();
-
-        }
-
-      } catch (error) {
-
-        /* Fullscreen is optional */
-
-      }
-
-
-      stage.classList.remove("playing");
-
-      void stage.offsetWidth;
-
-      stage.classList.add("playing");
-
-
-      playButton.classList.add("hidden");
-
-
-      setTimeout(() => {
-
-        playButton.classList.remove("hidden");
-
-      }, 12000);
-
-    });
-
-  </script>
-
 
 </body>
 
