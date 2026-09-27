@@ -1,22 +1,29 @@
 /* =========================================================
    GOVERNMENT PROPERTY
-   SCENE ONE - BRUTALIST FACILITY HALLWAY
+   SCENE ONE — FACILITY HALLWAY V2
+
+   Goal:
+   concrete, recessed doors, harsh lighting,
+   reflections, depth and first-person movement.
    ========================================================= */
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
 
 * {
   box-sizing: border-box;
 }
-
 
 html,
 body {
   margin: 0;
   width: 100%;
   height: 100%;
+
   background: #000;
 }
-
 
 body {
   display: flex;
@@ -27,7 +34,6 @@ body {
 
   overflow: hidden;
 }
-
 
 
 /* =========================================================
@@ -42,134 +48,211 @@ body {
 
   overflow: hidden;
 
-  background: #050505;
+  background: #060606;
 }
 
 
-
 /* =========================================================
-   ENTIRE HALL
-   Slight forward camera push
+   ENTIRE HALL / CAMERA
    ========================================================= */
 
 .hall {
   position: absolute;
-  inset: 0;
+  inset: -2%;
 
   overflow: hidden;
 
-  background: #090909;
+  background: #080808;
+
+  transform-origin: center 52%;
 
   animation:
-    cameraPush 6s
-    ease-in-out
-    infinite;
+    cameraWalk 7s ease-in-out infinite;
 }
 
 
-
 /* =========================================================
-   FAR WALL
+   DISTANT WALL
    ========================================================= */
 
 .back-wall {
   position: absolute;
 
   width: 42%;
-  height: 42%;
+  height: 43%;
 
   left: 29%;
-  top: 25%;
+  top: 24%;
+
+  z-index: 2;
+
+  overflow: hidden;
 
   background:
+
+    /* subtle concrete mottling */
+    radial-gradient(
+      circle at 24% 32%,
+      rgba(255,255,255,0.06),
+      transparent 18%
+    ),
+
+    radial-gradient(
+      circle at 74% 65%,
+      rgba(0,0,0,0.18),
+      transparent 22%
+    ),
+
     linear-gradient(
       90deg,
-      #3b3b3b,
-      #565656 48%,
-      #373737
+      #343638,
+      #55585a 48%,
+      #313335
     );
 
   border:
-    1px solid
-    rgba(255,255,255,0.14);
+    1px solid rgba(255,255,255,0.16);
 
   box-shadow:
-    inset 0 0 45px #151515;
-
-  z-index: 2;
+    inset 0 0 45px rgba(0,0,0,0.72),
+    0 0 30px rgba(0,0,0,0.7);
 }
 
 
+/* concrete vertical seam */
+
+.back-wall::before {
+  content: "";
+
+  position: absolute;
+
+  width: 1px;
+  height: 100%;
+
+  left: 50%;
+  top: 0;
+
+  background: rgba(255,255,255,0.08);
+}
+
 
 /* =========================================================
-   DISTANT DOOR
+   FAR SECURITY DOOR
    ========================================================= */
 
 .door {
   position: absolute;
 
   width: 38%;
-  height: 56%;
+  height: 57%;
 
   left: 31%;
   bottom: 0;
 
+  overflow: hidden;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent 48%,
+      rgba(255,255,255,0.08) 49%,
+      rgba(255,255,255,0.08) 51%,
+      transparent 52%
+    ),
+
+    linear-gradient(
+      90deg,
+      #090a0b,
+      #232527 50%,
+      #090a0b
+    );
+
+  border:
+    2px solid #56595b;
+
+  box-shadow:
+    inset 0 0 25px #000,
+    0 0 22px rgba(0,0,0,0.9);
+}
+
+
+/* observation window */
+
+.door::before {
+  content: "";
+
+  position: absolute;
+
+  width: 52%;
+  height: 9%;
+
+  left: 24%;
+  top: 24%;
+
   background:
     linear-gradient(
       90deg,
-      #101010,
-      #242424 48%,
-      #0c0c0c
+      #050607,
+      #20282c,
+      #050607
     );
 
-  border-left: 3px solid #686868;
-  border-right: 3px solid #686868;
+  border:
+    1px solid #74797b;
 
   box-shadow:
-    0 0 35px rgba(0,0,0,0.8);
+    inset 0 0 10px #000;
 }
 
+
+/* little distant person */
 
 .door::after {
   content: "";
 
   position: absolute;
 
-  width: 2px;
-  height: 100%;
+  width: 5px;
+  height: 18px;
 
-  left: 50%;
-  top: 0;
+  left: calc(50% - 2px);
+  bottom: 7%;
 
-  background: #686868;
+  border-radius: 50% 50% 30% 30%;
+
+  background: #050505;
+
+  box-shadow:
+    0 -6px 0 -1px #050505;
+
+  animation:
+    distantPerson 6s ease-in-out infinite;
 }
 
 
-
-/* red glow beneath doorway */
+/* =========================================================
+   RED GLOW UNDER DOOR
+   ========================================================= */
 
 .door-light {
   position: absolute;
 
-  width: 88%;
-  height: 8px;
+  width: 86%;
+  height: 5px;
 
-  left: 6%;
+  left: 7%;
   bottom: 0;
 
-  background: #8d1017;
+  background: #9f0b15;
 
   box-shadow:
-    0 0 12px #a4111a,
-    0 0 28px rgba(170, 10, 20, 0.7);
+    0 0 10px #c21220,
+    0 0 26px rgba(180,10,25,0.65);
 
   animation:
-    redPulse
-    2.4s
-    ease-in-out
-    infinite alternate;
+    redPulse 2.6s ease-in-out infinite alternate;
 }
-
 
 
 /* =========================================================
@@ -180,17 +263,12 @@ body {
   position: absolute;
 
   width: 100%;
-  height: 42%;
+  height: 43%;
 
   top: 0;
   left: 0;
 
-  background:
-    linear-gradient(
-      #191919,
-      #292929 60%,
-      #353535
-    );
+  z-index: 4;
 
   clip-path:
     polygon(
@@ -200,12 +278,27 @@ body {
       29% 100%
     );
 
-  z-index: 4;
+  background:
+
+    /* centre recessed channel */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 41%,
+      rgba(0,0,0,0.48) 41%,
+      rgba(0,0,0,0.48) 59%,
+      transparent 59%
+    ),
+
+    linear-gradient(
+      #101112,
+      #26282a 60%,
+      #393b3d
+    );
 
   box-shadow:
-    inset 0 -25px 35px rgba(0,0,0,0.75);
+    inset 0 -28px 50px rgba(0,0,0,0.75);
 }
-
 
 
 /* =========================================================
@@ -219,47 +312,41 @@ body {
 
   transform: translateX(-50%);
 
-  background:
-    rgba(235, 240, 238, 0.8);
+  border-radius: 1px;
+
+  background: #e7eceb;
 
   box-shadow:
-    0 0 15px rgba(255,255,255,0.25);
-
-  border-radius: 2px;
+    0 0 7px rgba(255,255,255,0.7),
+    0 0 20px rgba(220,235,235,0.18);
 }
-
 
 .light-one {
   width: 5%;
   height: 3px;
-
   top: 73%;
 }
 
-
 .light-two {
-  width: 9%;
+  width: 10%;
   height: 4px;
-
   top: 53%;
 }
 
-
 .light-three {
-  width: 16%;
+  width: 18%;
   height: 5px;
-
   top: 31%;
-}
 
+  animation:
+    lightFlicker 5s infinite;
+}
 
 .light-four {
-  width: 28%;
-  height: 6px;
-
-  top: 8%;
+  width: 32%;
+  height: 7px;
+  top: 7%;
 }
-
 
 
 /* =========================================================
@@ -276,15 +363,39 @@ body {
 
   z-index: 5;
 
+  overflow: hidden;
+
   background:
+
+    /* stains / concrete marks */
+    radial-gradient(
+      circle at 30% 24%,
+      rgba(255,255,255,0.04),
+      transparent 18%
+    ),
+
+    radial-gradient(
+      circle at 65% 71%,
+      rgba(0,0,0,0.18),
+      transparent 23%
+    ),
+
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 118px,
+      rgba(255,255,255,0.045) 119px,
+      rgba(255,255,255,0.045) 120px
+    ),
+
     linear-gradient(
       90deg,
-      #151515,
-      #454545
+      #111213,
+      #46494a
     );
 
   box-shadow:
-    inset 0 0 55px rgba(0,0,0,0.7);
+    inset 0 0 70px rgba(0,0,0,0.7);
 }
 
 
@@ -316,56 +427,99 @@ body {
 }
 
 
-
 /* =========================================================
-   WALL PANELS / DOORWAYS
+   RECESSED SIDE DOORS
    ========================================================= */
 
 .panel {
   position: absolute;
 
-  width: 23%;
+  width: 24%;
   height: 26%;
+
+  overflow: hidden;
 
   background:
     linear-gradient(
       90deg,
-      #090909,
-      #202020
+      #050606,
+      #17191a 50%,
+      #050606
     );
 
   border:
-    1px solid
-    rgba(255,255,255,0.12);
+    1px solid rgba(180,185,185,0.22);
 
   box-shadow:
-    inset 0 0 18px #000;
+    inset 0 0 24px #000,
+    0 0 12px rgba(0,0,0,0.8);
+}
+
+
+/* observation slit */
+
+.panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 46%;
+  height: 6%;
+
+  left: 27%;
+  top: 25%;
+
+  background: #111719;
+
+  border:
+    1px solid rgba(190,200,200,0.22);
+
+  box-shadow:
+    inset 0 0 6px #000;
+}
+
+
+/* tiny red status light */
+
+.panel::after {
+  content: "";
+
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  right: 10%;
+  top: 10%;
+
+  border-radius: 50%;
+
+  background: #a70b14;
+
+  box-shadow:
+    0 0 5px rgba(200,15,25,0.8);
 }
 
 
 .p1 {
-  left: 5%;
-  top: 14%;
+  left: 3%;
+  top: 13%;
 }
-
 
 .p2 {
-  left: 21%;
-  top: 35%;
+  left: 20%;
+  top: 34%;
 }
-
 
 .p3 {
   left: 48%;
   top: 54%;
 }
 
-
 .p4 {
   left: 76%;
-  top: 68%;
+  top: 69%;
 }
-
 
 
 /* =========================================================
@@ -376,19 +530,14 @@ body {
   position: absolute;
 
   width: 100%;
-  height: 52%;
+  height: 53%;
 
   left: 0;
   bottom: 0;
 
-  background:
-    repeating-linear-gradient(
-      0deg,
-      #232323 0px,
-      #232323 80px,
-      #303030 82px,
-      #303030 84px
-    );
+  z-index: 3;
+
+  overflow: hidden;
 
   clip-path:
     polygon(
@@ -398,18 +547,50 @@ body {
       0 100%
     );
 
-  z-index: 3;
+  background:
+
+    /* subtle reflection */
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.025),
+      transparent 22%,
+      rgba(255,255,255,0.05) 50%,
+      transparent 78%,
+      rgba(255,255,255,0.025)
+    ),
+
+    repeating-linear-gradient(
+      0deg,
+      #171819 0px,
+      #171819 91px,
+      #333638 92px,
+      #333638 94px
+    );
 
   box-shadow:
-    inset 0 25px 45px rgba(0,0,0,0.8);
+    inset 0 28px 55px rgba(0,0,0,0.82);
 
   animation:
-    floorMove
-    1.1s
-    linear
-    infinite;
+    floorMove 1.3s linear infinite;
 }
 
+
+/* centre floor seam */
+
+.floor::before {
+  content: "";
+
+  position: absolute;
+
+  width: 1px;
+  height: 100%;
+
+  left: 50%;
+  top: 0;
+
+  background:
+    rgba(255,255,255,0.09);
+}
 
 
 /* =========================================================
@@ -419,36 +600,99 @@ body {
 .red-path {
   position: absolute;
 
-  width: 16%;
+  width: 18%;
   height: 100%;
 
-  left: 42%;
+  left: 41%;
   top: 0;
+
+  clip-path:
+    polygon(
+      41% 0,
+      59% 0,
+      100% 100%,
+      0 100%
+    );
+
+  background:
+
+    /* subtle worn marks */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 75px,
+      rgba(0,0,0,0.12) 76px,
+      rgba(0,0,0,0.12) 79px
+    ),
+
+    linear-gradient(
+      90deg,
+      #5f070d,
+      #a50b16 46%,
+      #b00d18 54%,
+      #5f070d
+    );
+
+  box-shadow:
+    0 0 22px rgba(155,5,18,0.28);
+}
+
+
+/* faint red reflection */
+
+.red-path::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.23;
 
   background:
     linear-gradient(
       90deg,
-      #6c090f,
-      #aa101a 50%,
-      #69080e
+      transparent,
+      rgba(255,90,90,0.35),
+      transparent
     );
 
-  box-shadow:
-    0 0 18px rgba(170,10,20,0.36);
-
-  clip-path:
-    polygon(
-      40% 0,
-      60% 0,
-      100% 100%,
-      0 100%
-    );
+  filter: blur(8px);
 }
 
 
+/* =========================================================
+   ATMOSPHERIC HAZE
+   ========================================================= */
+
+.hall::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 40;
+
+  width: 62%;
+  height: 45%;
+
+  left: 19%;
+  top: 26%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(220,225,225,0.055),
+      transparent 70%
+    );
+
+  filter: blur(11px);
+}
+
 
 /* =========================================================
-   CINEMATIC DARK EDGES
+   CINEMATIC VIGNETTE
    ========================================================= */
 
 .vignette {
@@ -463,71 +707,135 @@ body {
   background:
     radial-gradient(
       ellipse at center,
-      transparent 34%,
-      rgba(0,0,0,0.12) 52%,
-      rgba(0,0,0,0.72) 100%
+      transparent 31%,
+      rgba(0,0,0,0.10) 51%,
+      rgba(0,0,0,0.76) 100%
     );
 }
 
 
-
 /* =========================================================
-   CAMERA PUSH
+   CAMERA WALK
+
+   Slight forward movement + tiny human sway.
    ========================================================= */
 
-@keyframes cameraPush {
+@keyframes cameraWalk {
 
   0% {
-    transform: scale(1);
+    transform:
+      scale(1)
+      translateX(0)
+      translateY(0);
   }
 
+  25% {
+    transform:
+      scale(1.035)
+      translateX(-0.4%)
+      translateY(0.3%);
+  }
 
   50% {
-    transform: scale(1.055);
+    transform:
+      scale(1.07)
+      translateX(0.35%)
+      translateY(-0.2%);
   }
 
+  75% {
+    transform:
+      scale(1.105)
+      translateX(-0.25%)
+      translateY(0.2%);
+  }
 
   100% {
-    transform: scale(1.11);
+    transform:
+      scale(1.14)
+      translateX(0)
+      translateY(-0.3%);
   }
 
 }
 
 
-
 /* =========================================================
-   FLOOR MOVEMENT
-   Gives illusion of moving forward
+   FLOOR MOTION
    ========================================================= */
 
 @keyframes floorMove {
 
   from {
-    background-position-y: 0;
+    background-position-y:
+      0,
+      0;
   }
 
-
   to {
-    background-position-y: 84px;
+    background-position-y:
+      0,
+      94px;
   }
 
 }
 
 
-
 /* =========================================================
-   RED LIGHT PULSE
+   RED LIGHT
    ========================================================= */
 
 @keyframes redPulse {
 
   from {
-    opacity: 0.55;
+    opacity: 0.48;
   }
-
 
   to {
     opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   FLUORESCENT FLICKER
+   ========================================================= */
+
+@keyframes lightFlicker {
+
+  0%,
+  91%,
+  94%,
+  100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 0.3;
+  }
+
+  93% {
+    opacity: 0.75;
+  }
+
+}
+
+
+/* =========================================================
+   DISTANT PERSON
+   ========================================================= */
+
+@keyframes distantPerson {
+
+  0%,
+  25% {
+    transform: translateX(-14px);
+  }
+
+  70%,
+  100% {
+    transform: translateX(14px);
   }
 
 }
