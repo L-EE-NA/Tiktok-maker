@@ -1,0 +1,646 @@
+/* =========================================================
+   PAGE RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  min-height: 100%;
+
+  background: #050505;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  overflow-x: hidden;
+
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================================================
+   TIKTOK STAGE
+   Vertical 9:16 animation canvas.
+   ========================================================= */
+
+.stage {
+  position: relative;
+
+  width: min(100vw, 56.25vh);
+  aspect-ratio: 9 / 16;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #222 0%,
+      #0d0d0d 45%,
+      #020202 100%
+    );
+
+  box-shadow: 0 0 60px #000;
+}
+
+
+/* =========================================================
+   SCENE 1 - INSTITUTION
+   ========================================================= */
+
+.world {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  animation: worldFade 10s forwards;
+}
+
+
+/* =========================================================
+   RED ROUTES
+   ========================================================= */
+
+.route {
+  position: absolute;
+
+  background: #8f1018;
+
+  box-shadow:
+    0 0 8px rgba(170, 0, 10, 0.8),
+    0 0 18px rgba(170, 0, 10, 0.35);
+
+  transform-origin: left center;
+
+  opacity: 0;
+
+  animation: drawRoute 1.4s ease-out forwards;
+}
+
+
+.route-one {
+  width: 55%;
+  height: 5px;
+
+  top: 18%;
+  left: 8%;
+
+  animation-delay: 0.3s;
+}
+
+
+.route-two {
+  width: 5px;
+  height: 30%;
+
+  top: 18%;
+  left: 62%;
+
+  animation-delay: 0.7s;
+}
+
+
+.route-three {
+  width: 52%;
+  height: 5px;
+
+  top: 48%;
+  left: 28%;
+
+  animation-delay: 1.1s;
+}
+
+
+.route-four {
+  width: 5px;
+  height: 27%;
+
+  top: 48%;
+  left: 28%;
+
+  animation-delay: 1.5s;
+}
+
+
+.route-five {
+  width: 48%;
+  height: 5px;
+
+  top: 74%;
+  left: 28%;
+
+  animation-delay: 1.9s;
+}
+
+
+/* =========================================================
+   CONCRETE BUILDINGS
+   ========================================================= */
+
+.building {
+  position: absolute;
+
+  background:
+    linear-gradient(
+      145deg,
+      #666,
+      #343434 55%,
+      #1d1d1d
+    );
+
+  border: 1px solid #777;
+
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.06),
+    0 12px 35px rgba(0, 0, 0, 0.65);
+
+  opacity: 0;
+
+  animation: buildIn 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+
+.block-one {
+  width: 42%;
+  height: 14%;
+
+  left: 6%;
+  top: 11%;
+
+  animation-delay: 1.1s;
+}
+
+
+.block-two {
+  width: 31%;
+  height: 22%;
+
+  right: 6%;
+  top: 26%;
+
+  animation-delay: 1.5s;
+}
+
+
+.block-three {
+  width: 38%;
+  height: 18%;
+
+  left: 12%;
+  top: 37%;
+
+  animation-delay: 1.9s;
+}
+
+
+.block-four {
+  width: 52%;
+  height: 13%;
+
+  left: 34%;
+  top: 57%;
+
+  animation-delay: 2.3s;
+}
+
+
+.block-five {
+  width: 29%;
+  height: 23%;
+
+  left: 7%;
+  top: 67%;
+
+  animation-delay: 2.7s;
+}
+
+
+.block-six {
+  width: 38%;
+  height: 16%;
+
+  right: 7%;
+  top: 79%;
+
+  animation-delay: 3.1s;
+}
+
+
+/* =========================================================
+   FINAL SCENE
+   ========================================================= */
+
+.final-scene {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      #321014 0%,
+      #100608 34%,
+      #020202 72%
+    );
+
+  animation: finalReveal 10s forwards;
+}
+
+
+/* =========================================================
+   RED BACKLIGHT
+   ========================================================= */
+
+.red-glow {
+  position: absolute;
+
+  width: 70%;
+  height: 48%;
+
+  left: 15%;
+  top: 19%;
+
+  border-radius: 50%;
+
+  background: rgba(150, 5, 15, 0.27);
+
+  filter: blur(45px);
+
+  animation: glowPulse 2.4s ease-in-out infinite alternate;
+}
+
+
+/* =========================================================
+   PERSON SILHOUETTE
+   ========================================================= */
+
+.person {
+  position: absolute;
+
+  width: 62%;
+  height: 58%;
+
+  left: 19%;
+  bottom: 13%;
+
+  opacity: 0;
+
+  animation: prisonerReveal 10s forwards;
+}
+
+
+.head {
+  position: absolute;
+
+  width: 27%;
+  aspect-ratio: 0.82;
+
+  top: 1%;
+  left: 36.5%;
+
+  border-radius: 48% 48% 44% 44%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #080808,
+      #191919 48%,
+      #060606
+    );
+
+  box-shadow: 0 0 40px rgba(140, 0, 10, 0.12);
+}
+
+
+.body {
+  position: absolute;
+
+  width: 68%;
+  height: 61%;
+
+  top: 24%;
+  left: 16%;
+
+  border-radius: 36% 36% 10% 10%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #060606,
+      #171717 50%,
+      #050505
+    );
+}
+
+
+/* =========================================================
+   ARMS
+   ========================================================= */
+
+.arm {
+  position: absolute;
+
+  width: 14%;
+  height: 42%;
+
+  top: 43%;
+
+  background: #101010;
+
+  border-radius: 999px;
+
+  transform-origin: top center;
+}
+
+
+.arm-left {
+  left: 31%;
+
+  transform: rotate(-8deg);
+}
+
+
+.arm-right {
+  right: 31%;
+
+  transform: rotate(8deg);
+}
+
+
+/* =========================================================
+   HANDS
+   ========================================================= */
+
+.hand {
+  position: absolute;
+
+  width: 15%;
+  aspect-ratio: 0.75;
+
+  bottom: 3%;
+
+  border-radius: 45%;
+
+  background: #161616;
+}
+
+
+.hand-left {
+  left: 38%;
+}
+
+
+.hand-right {
+  right: 38%;
+}
+
+
+/* =========================================================
+   METAL CUFFS
+   ========================================================= */
+
+.cuff {
+  position: absolute;
+
+  width: 18%;
+  height: 5%;
+
+  bottom: 15%;
+
+  border: 4px solid #a7a7a7;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      #d7d7d7,
+      #595959,
+      #c7c7c7
+    );
+
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.3),
+    0 4px 9px #000;
+}
+
+
+.cuff-left {
+  left: 31%;
+}
+
+
+.cuff-right {
+  right: 31%;
+}
+
+
+/* =========================================================
+   CHAIN
+   ========================================================= */
+
+.chain {
+  position: absolute;
+
+  width: 18%;
+  height: 4px;
+
+  left: 41%;
+  bottom: 16.5%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #d7d7d7 0px,
+      #d7d7d7 5px,
+      transparent 5px,
+      transparent 9px
+    );
+
+  box-shadow: 0 2px 6px #000;
+}
+
+
+/* =========================================================
+   FINAL TITLE
+   ========================================================= */
+
+.final-title {
+  position: absolute;
+
+  width: 100%;
+
+  bottom: 4%;
+
+  text-align: center;
+
+  color: #e8e3df;
+
+  opacity: 0;
+
+  animation: titleReveal 10s forwards;
+}
+
+
+.final-title h1 {
+  margin: 0;
+
+  font-size: clamp(2rem, 9vw, 3.7rem);
+
+  font-weight: normal;
+
+  line-height: 0.92;
+
+  letter-spacing: 0.12em;
+}
+
+
+.final-title p {
+  margin-top: 18px;
+
+  font-size: clamp(0.8rem, 3.4vw, 1.3rem);
+
+  letter-spacing: 0.55em;
+
+  color: #b9a8a5;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes drawRoute {
+
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+}
+
+
+@keyframes buildIn {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateY(80px)
+      scale(0.88);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes worldFade {
+
+  0%,
+  54% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  65% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+
+}
+
+
+@keyframes finalReveal {
+
+  0%,
+  54% {
+    opacity: 0;
+  }
+
+  65%,
+  100% {
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes prisonerReveal {
+
+  0%,
+  58% {
+    opacity: 0;
+    transform:
+      translateY(35px)
+      scale(0.96);
+  }
+
+  72%,
+  100% {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+@keyframes titleReveal {
+
+  0%,
+  76% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  88%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes glowPulse {
+
+  from {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 0.8;
+    transform: scale(1.08);
+  }
+
+}
