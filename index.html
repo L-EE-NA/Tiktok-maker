@@ -3,18 +3,12 @@
 
 <head>
 
-  <!-- trigger GitHub Pages -->
-  
-  <!-- =========================================================
-       PAGE SETTINGS
-       ========================================================= -->
-
   <meta charset="UTF-8">
 
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Government Property Animation</title>
+  <title>Government Property Trailer</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -25,135 +19,193 @@
 
 
   <!-- =========================================================
-       TIKTOK ANIMATION STAGE
-
-       Everything inside this box becomes the vertical
-       9:16 animation.
+       PLAY BUTTON
+       Starts the trailer.
        ========================================================= -->
 
-  <main class="stage">
+  <button id="play-button">
+    TAP TO PLAY
+  </button>
+
+
+  <!-- =========================================================
+       9:16 TIKTOK STAGE
+       ========================================================= -->
+
+  <main class="stage" id="stage">
 
 
     <!-- =======================================================
-         SCENE 1
-         RED PATHS / INSTITUTIONAL MAP
+         SCENE ONE
+         ANIMATED GOVERNMENT PROPERTY COVER
          ======================================================= -->
 
-    <div class="world">
+    <section class="complex-scene">
 
 
-      <!-- Red route lines -->
+      <!-- Real Government Property cover -->
 
-      <div class="route route-one"></div>
-
-      <div class="route route-two"></div>
-
-      <div class="route route-three"></div>
-
-      <div class="route route-four"></div>
-
-      <div class="route route-five"></div>
+      <img
+        class="cover-close"
+        src="file_00000000c5e48243849aeed202e93012.png"
+        alt=""
+      >
 
 
       <!-- =====================================================
-           CONCRETE STRUCTURES
-
-           These blocks will slide into position and create
-           the brutalist institutional environment.
+           RED ROUTES
            ===================================================== -->
 
-      <div class="building block-one"></div>
+      <svg
+        class="route-map"
+        viewBox="0 0 900 1600"
+        preserveAspectRatio="xMidYMid slice"
+      >
 
-      <div class="building block-two"></div>
+        <path
+          class="route route-one"
+          d="
+            M450 1600
+            L450 1280
+            L330 1160
+            L330 940
+            L520 830
+            L520 620
+            L700 520
+          "
+        />
 
-      <div class="building block-three"></div>
+        <path
+          class="route route-two"
+          d="
+            M450 1280
+            L650 1160
+            L650 930
+            L790 850
+          "
+        />
 
-      <div class="building block-four"></div>
+        <path
+          class="route route-three"
+          d="
+            M330 1160
+            L170 1050
+            L170 790
+            L340 680
+          "
+        />
 
-      <div class="building block-five"></div>
+        <path
+          class="route route-four"
+          d="
+            M520 830
+            L390 720
+            L390 500
+            L250 420
+          "
+        />
 
-      <div class="building block-six"></div>
+      </svg>
 
 
-    </div>
+      <!-- Tiny moving silhouettes -->
 
+      <div class="person-dot person-one"></div>
+
+      <div class="person-dot person-two"></div>
+
+      <div class="person-dot person-three"></div>
+
+
+      <!-- Moving light -->
+
+      <div class="scan-light"></div>
+
+
+      <!-- Dark edges -->
+
+      <div class="vignette"></div>
+
+
+      <!-- Film texture -->
+
+      <div class="grain"></div>
+
+
+    </section>
 
 
     <!-- =======================================================
-         SCENE 2
-         CUFFED FIGURE
-
-         This appears after the institution fades away.
+         DARK TRANSITION
          ======================================================= -->
 
-    <div class="final-scene">
+    <div class="blackout"></div>
 
 
-      <!-- Red backlight -->
+    <!-- =======================================================
+         FINAL FULL COVER
+         ======================================================= -->
 
-      <div class="red-glow"></div>
+    <section class="final-cover">
 
+      <img
+        src="file_00000000c5e48243849aeed202e93012.png"
+        alt="Government Property by Leena"
+      >
 
-      <!-- Human silhouette -->
-
-      <div class="person">
-
-        <div class="head"></div>
-
-        <div class="body"></div>
-
-
-        <!-- Left arm -->
-
-        <div class="arm arm-left"></div>
-
-
-        <!-- Right arm -->
-
-        <div class="arm arm-right"></div>
-
-
-        <!-- Hands -->
-
-        <div class="hand hand-left"></div>
-
-        <div class="hand hand-right"></div>
-
-
-        <!-- Metal cuffs -->
-
-        <div class="cuff cuff-left"></div>
-
-        <div class="cuff cuff-right"></div>
-
-
-        <!-- Chain between cuffs -->
-
-        <div class="chain"></div>
-
-      </div>
-
-
-      <!-- =====================================================
-           FINAL TITLE
-           ===================================================== -->
-
-      <div class="final-title">
-
-        <h1>
-          GOVERNMENT<br>
-          PROPERTY
-        </h1>
-
-        <p>LEENA</p>
-
-      </div>
-
-
-    </div>
+    </section>
 
 
   </main>
+
+
+  <!-- =========================================================
+       START / RESTART ANIMATION
+       ========================================================= -->
+
+  <script>
+
+    const stage = document.getElementById("stage");
+
+    const playButton = document.getElementById("play-button");
+
+
+    playButton.addEventListener("click", async () => {
+
+      try {
+
+        if (document.documentElement.requestFullscreen) {
+
+          await document.documentElement.requestFullscreen();
+
+        }
+
+      } catch (error) {
+
+        /* Fullscreen is optional */
+
+      }
+
+
+      stage.classList.remove("playing");
+
+      void stage.offsetWidth;
+
+      stage.classList.add("playing");
+
+
+      playButton.classList.add("hidden");
+
+
+      setTimeout(() => {
+
+        playButton.classList.remove("hidden");
+
+      }, 12000);
+
+    });
+
+  </script>
 
 
 </body>
